@@ -80,11 +80,11 @@ def simulateBingo():
         bingoCards.append(card)
         i += 1 # skip over blank line
     
-    winningTurn = len(calledNumbers)
+    winningTurn = -1
     winningScore = -1
     for card in bingoCards:
         boolCard = [[False for i in range(5)] for j in range(5)]
-        for turn in range(winningTurn+1): #no reason to continue on this card if another won
+        for turn in range(len(calledNumbers)):
             n = calledNumbers[turn]
             for r in range(5):
                 for c in range(5):
@@ -92,7 +92,7 @@ def simulateBingo():
                         boolCard[r][c] = True 
             if checkWin(boolCard) == True:
                 score = calledNumbers[turn] * sumUncalled(card, boolCard)
-                if turn < winningTurn:
+                if turn > winningTurn:
                     winningScore = score 
                     winningTurn = turn 
                 break
