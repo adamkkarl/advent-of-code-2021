@@ -3,7 +3,7 @@
 """
 Advent of Code 2021
 Day 5 Part 1
-https://adventofcode.com/2021/day/4
+https://adventofcode.com/2021/day/5
 """
 
 __author__ = "Adam Karl"
@@ -31,7 +31,8 @@ def findOverlappingVents():
         elif y1 == y2:
             for i in range(min(x1,x2), max(x1,x2)+1):
                 grid[i][y1] += 1
-        
+        else:
+            #
     
     # count overlap points
     overlaps = 0
