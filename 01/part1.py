@@ -7,10 +7,7 @@
 
 __author__ = "Adam Karl"
 
-#import sys
-
 INPUT_FILE = 'input.txt'
-
 
 def SonarSweep():
     """Parses and input file of depths and count the number of times a depth 
