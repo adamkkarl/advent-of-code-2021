@@ -42,17 +42,29 @@ class graph:
             ret += '\n'
         return ret
 
-def traverse(path, caveSystem):
-    """Given a cave system and a list of caves visited so far, recursively
+def traverse(path, g):
+    """Given a cave system graph and a list of caves visited so far, recursively
     try every possible next step and return the number of valid paths that
     reach this point"""
     curr = path[-1]
     
     if curr == 'end':
+        # reached the end!
+        print(path)
+        return 1
+    if len(path)>1 and curr == 'start':
+        # returned to start => invalid path
+        return 0
+    if curr.islower() and curr in path[:-1]:
+        # visited this small cave already => invalid path
         return 0
     
-    
-    
+    paths = 0
+    for next in g.getConnections(curr):
+        newPath = path.copy()
+        newPath.append(next)
+        paths += traverse(newPath, g)
+    return paths
 
 def determineUniquePaths():
     """Read in the description of the cave system and determine the number
@@ -70,13 +82,10 @@ def determineUniquePaths():
         g.addConnection(vertices[0], vertices[1])
         
     print(g)
-        
-    
-    
-    # use recursion to find all unique valid paths from start to end
-    #numPaths = traverse(['start'], caveSystem)
-    return 1#numPaths
-
+       
+    # use recursion to find all unique valid paths from start to end 
+    totalPaths = traverse(['start'], g)
+    return totalPaths
 
 def main():    
     paths = determineUniquePaths()
