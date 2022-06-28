@@ -12,7 +12,7 @@ INPUT_FILE = 'chitonDensity.txt'
 
 
 def findLowestRiskPath():
-    """GRead in an int grid, find the path from the top left to the bottom right
+    """Read in an int grid, find the path from the top left to the bottom right
     that incurs the lowest sum over its path"""
     
     f = open(INPUT_FILE, 'r')
